@@ -6,8 +6,8 @@
 // This is because we need ImTextureID to carry a 64-bit value and by default ImTextureID is defined as void*.
 // This define is set in the example .vcxproj file and need to be replicated in your app or by adding it to your imconfig.h file.
 
-#include "injector_gui.h"
-#include "simple_inject.h"
+#include "injector-gui.h"
+
 
 #ifdef _DEBUG
 #define DX12_ENABLE_DEBUG_LAYER
@@ -115,6 +115,10 @@ int main()
     std::string filePathName = "";
     std::string filePath = "";
 
+    std::string exePathName = "";
+    std::string exePath = "";
+
+
     // Main loop
     bool done = false;
     while (!done)
@@ -156,7 +160,7 @@ int main()
             
               // open Dialog Simple
             if (ImGui::Button("Select DLL"))
-                ImGuiFileDialog::Instance()->OpenDialog("ChooseFileDlgKey", "Choose File", ".dll", ".");
+                ImGuiFileDialog::Instance()->OpenDialog("ChooseFileDlgKey", "Choose File", ".dll,.exe", ".");
 
             // display
             if (ImGuiFileDialog::Instance()->Display("ChooseFileDlgKey"))
@@ -172,7 +176,7 @@ int main()
                 // close
                 ImGuiFileDialog::Instance()->Close();
             }
-
+            ImGui::SameLine();
             ImGui::Text("Current DLL: %s", filePathName.c_str());
             
             static std::string procName = "";
@@ -190,6 +194,43 @@ int main()
                 simpleInject(filePathName.c_str(), wideproc.c_str());
                 simpleClicked++;
             }
+
+            ImGui::Separator();
+            ImGui::Text("Process Hollowing");
+
+            // open Dialog Simple
+            if (ImGui::Button("Select Process to Launch"))
+                ImGuiFileDialog::Instance()->OpenDialog("ChooseExeDlgKey", "Choose File", ".exe", ".");
+
+            // display
+            if (ImGuiFileDialog::Instance()->Display("ChooseExeDlgKey"))
+            {
+                // action if OK
+                if (ImGuiFileDialog::Instance()->IsOk())
+                {
+                    exePathName = ImGuiFileDialog::Instance()->GetFilePathName();
+                    exePath = ImGuiFileDialog::Instance()->GetCurrentPath();
+                    // action
+                }
+
+                // close
+                ImGuiFileDialog::Instance()->Close();
+            }
+            ImGui::SameLine();
+            ImGui::Text("Current Process: %s", exePathName.c_str());
+
+            static int hollowClicked = 0;
+            if (ImGui::Button("Process Hollow Injector"))
+                hollowClicked++;
+            if (hollowClicked & 1)
+            {
+                std::wstring widepath = std::wstring(filePathName.begin(), filePathName.end());
+                std::wstring wideexe = std::wstring(exePathName.begin(), exePathName.end());
+                processHollow(wideexe.c_str(), widepath.c_str());
+                hollowClicked++;
+            }
+
+
 
                                                                           
             ////getmodulebaseaddress

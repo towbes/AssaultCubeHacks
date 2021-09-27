@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dxgi.lib;D3D12.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ntdll.lib;dxgi.lib;D3D12.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
@@ -151,9 +151,10 @@
     <ClCompile Include="..\imgui\imgui_stdlib.cpp" />
     <ClCompile Include="..\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="injector_gui.cpp" />
+    <ClCompile Include="injector-gui.cpp" />
     <ClCompile Include="proc.cpp" />
-    <ClCompile Include="simple_inject.cpp" />
+    <ClCompile Include="process-hollow.cpp" />
+    <ClCompile Include="simple-inject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\imgui\imconfig.h" />
@@ -167,9 +168,10 @@
     <ClInclude Include="..\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\imgui\imstb_textedit.h" />
     <ClInclude Include="..\imgui\imstb_truetype.h" />
-    <ClInclude Include="injector_gui.h" />
+    <ClInclude Include="injector-gui.h" />
     <ClInclude Include="proc.h" />
-    <ClInclude Include="simple_inject.h" />
+    <ClInclude Include="process-hollow.h" />
+    <ClInclude Include="simple-inject.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

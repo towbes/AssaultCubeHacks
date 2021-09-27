@@ -21,10 +21,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="injector_gui.cpp">
+    <ClCompile Include="injector-gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_inject.cpp">
+    <ClCompile Include="simple-inject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="proc.cpp">
@@ -57,15 +57,18 @@
     <ClCompile Include="..\imgui\imgui_stdlib.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="process-hollow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="injector_gui.h">
+    <ClInclude Include="injector-gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_inject.h">
+    <ClInclude Include="simple-inject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="proc.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="..\imgui\imgui_stdlib.h">
       <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="process-hollow.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

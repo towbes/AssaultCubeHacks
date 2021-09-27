@@ -1,4 +1,4 @@
-#include "simple_inject.h"
+#include "simple-inject.h"
 
 
 int simpleInject(const char* dllPath, const wchar_t* procName) {
