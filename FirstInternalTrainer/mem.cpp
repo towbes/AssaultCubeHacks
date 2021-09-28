@@ -46,3 +46,46 @@ uintptr_t mem::findDMAAddy(uintptr_t baseptr, std::vector<unsigned int> offsets)
 
 	return addr;
 }
+
+bool mem::Detour32(BYTE* src, BYTE* dst, const uintptr_t len) {
+	if (len < 5) return false;
+
+	DWORD curProtection;
+	VirtualProtect(src, len, PAGE_EXECUTE_READWRITE, &curProtection);
+
+	uintptr_t relativeAddress = dst - src - 5;
+
+	//jmp instruction
+	*src = 0xE9;
+	//address
+	*(uintptr_t*)(src + 1) = relativeAddress;
+
+	VirtualProtect(src, len, curProtection, &curProtection);
+
+	return true;
+}
+
+
+BYTE* mem::TrampHook32(BYTE* src, BYTE* dst, const uintptr_t len) {
+	if (len < 5) return 0;
+
+	//Create a Gateway
+	BYTE* gateway = (BYTE*)VirtualAlloc(0, len, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+
+	//write stolen bytes to gateway
+	memcpy_s(gateway, len, src, len);
+
+	//Get gateway to destination address
+	uintptr_t gatewayRelativeAddress = src - gateway - 5;
+
+	//add jmp opcode to end of gateway
+	*(gateway + len) = 0xe9;
+
+	//write address of gateway to jmp
+	*(uintptr_t*)((uintptr_t)gateway + len + 1) = gatewayRelativeAddress;
+
+	//Perform detour
+	Detour32(src, dst, len);
+
+	return gateway;
+}

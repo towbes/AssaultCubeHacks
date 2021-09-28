@@ -72,10 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\ritzgames\Desktop\hacking\AssaultCubeHacks\imgui;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\ritzgames\Desktop\hacking\AssaultCubeHacks\imgui;C:\Users\ritzgames\SDL2-2.0.16\include</IncludePath>
+    <LibraryPath>C:\Users\ritzgames\SDL2-2.0.16\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\ritzgames\Desktop\hacking\AssaultCubeHacks\imgui;C:\Users\ritzgames\SDL2-2.0.16\include</IncludePath>
+    <LibraryPath>C:\Users\ritzgames\SDL2-2.0.16\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -91,12 +94,13 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>dxgi.lib;D3D12.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;D3D12.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -116,6 +120,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>dxgi.lib;D3D12.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -161,7 +166,7 @@
     <ClInclude Include="..\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\imgui\imstb_textedit.h" />
     <ClInclude Include="..\imgui\imstb_truetype.h" />
-    <ClInclude Include="gui.h" />
+    <ClInclude Include="directx-gui.h" />
     <ClInclude Include="InternalTrainer.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="pch.h" />
@@ -177,7 +182,7 @@
     <ClCompile Include="..\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\imgui\imgui_widgets.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="gui.cpp" />
+    <ClCompile Include="directx-gui.cpp" />
     <ClCompile Include="InternalTrainer.cpp" />
     <ClCompile Include="mem.cpp" />
     <ClCompile Include="pch.cpp">

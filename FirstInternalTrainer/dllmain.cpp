@@ -2,14 +2,33 @@
 #include "pch.h"
 #include "mem.h"
 #include "proc.h"
-#include "gui.h"
+#include "directx-gui.h"
+
+typedef BOOL(__stdcall* twglSwapBuffers) (HDC hDc);
+
+twglSwapBuffers owglSwapBuffers;
+
+BOOL __stdcall hkwglSwapBuffers(HDC hDc) {
+
+
+    return owglSwapBuffers(hDc);
+}
 
 DWORD WINAPI HackThread(HMODULE hModule) {
 
-    int running = 0;
-    
-    running = DrawGui();
+    //Trampoline hook code not using this yet
+    //Create Console
+    //AllocConsole();
+    //FILE* f;
+    //freopen_s(&f, "CONOUT$", "w", stdout);
+    //
+    //owglSwapBuffers = (twglSwapBuffers)GetProcAddress(GetModuleHandle(L"opengl32.dll"), "wglSwapBuffers");
+    //owglSwapBuffers = (twglSwapBuffers)mem::TrampHook32((BYTE*)owglSwapBuffers, (BYTE*)hkwglSwapBuffers, 5);
 
+
+    int running = 0;
+    running = DrawGui();
+    
     FreeLibraryAndExitThread(hModule, 0);
     return 0;
 }

@@ -36,7 +36,7 @@
     <ClInclude Include="proc.h">
       <Filter>proc</Filter>
     </ClInclude>
-    <ClInclude Include="gui.h">
+    <ClInclude Include="directx-gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InternalTrainer.h">
@@ -80,7 +80,7 @@
     <ClCompile Include="proc.cpp">
       <Filter>proc</Filter>
     </ClCompile>
-    <ClCompile Include="gui.cpp">
+    <ClCompile Include="directx-gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InternalTrainer.cpp">

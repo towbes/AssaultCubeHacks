@@ -6,7 +6,7 @@
 // This is because we need ImTextureID to carry a 64-bit value and by default ImTextureID is defined as void*.
 // This define is set in the example .vcxproj file and need to be replicated in your app or by adding it to your imconfig.h file.
 
-#include "gui.h"
+#include "directx-gui.h"
 
 #ifdef _DEBUG
 #define DX12_ENABLE_DEBUG_LAYER
